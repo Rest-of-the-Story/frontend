@@ -15,12 +15,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Sanity
-studio/node_modules/
-studio/dist/
-studio/.sanity/
-studio/.git
-
 # Sentry Config File
 .env.sentry-build-plugin
 
