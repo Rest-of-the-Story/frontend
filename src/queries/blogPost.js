@@ -14,6 +14,7 @@ export const blogPostQuery = groq`
     },
     mainImage{asset->{url}, alt, crop, hotspot},
     publishedAt,
+    metaDescription,
     categories[]->{title, slug},
     ${finalNoteProjection}
   }

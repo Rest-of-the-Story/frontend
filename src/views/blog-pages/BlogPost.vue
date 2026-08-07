@@ -137,7 +137,8 @@ useHead(() => {
   if (!p) return { title: 'Loading...' }
 
   const title = p.title
-  const desc = truncateForDescription(extractExcerpt(p.body))
+  // Use the CMS meta description if set; otherwise auto-derive from the body.
+  const desc = p.metaDescription?.trim() || truncateForDescription(extractExcerpt(p.body))
   const url = typeof window !== 'undefined' ? window.location.href : `/blog-pages/${p.slug}`
   const image = p.mainImage?.asset?.url
 
