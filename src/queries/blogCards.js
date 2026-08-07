@@ -1,7 +1,7 @@
 import groq from 'groq'
  
 const blogCardsQuery = groq`
- *[_type == "post"] | order(publishedAt desc)[0...$limit]{
+ *[_type == "post" && (!defined(publishedAt) || publishedAt <= now())] | order(publishedAt desc)[0...$limit]{
   title,
   "excerpt": pt::text(body),
   slug,

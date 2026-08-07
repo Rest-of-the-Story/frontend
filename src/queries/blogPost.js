@@ -3,7 +3,7 @@ import groq from 'groq';
 import { finalNoteProjection } from './finalNote';
 
 export const blogPostQuery = groq`
-  *[_type == "post" && slug.current == $slug][0]{
+  *[_type == "post" && slug.current == $slug && (!defined(publishedAt) || publishedAt <= now())][0]{
     _id,
     title,
     "slug": slug.current,

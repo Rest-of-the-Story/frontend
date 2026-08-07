@@ -7,7 +7,7 @@ const blogCategoriesQuery = groq`
   slug,
   description,
   image{asset, alt, crop, hotspot},
-  "postCount": count(*[_type == "post" && references(^._id)])
+  "postCount": count(*[_type == "post" && references(^._id) && (!defined(publishedAt) || publishedAt <= now())])
 }`
 
 export const categoryOnly = groq`
@@ -20,7 +20,7 @@ export const categoryOnly = groq`
 }`
 
 export const postsForCategory = groq`
-*[_type == "post" && references($categoryId)]
+*[_type == "post" && references($categoryId) && (!defined(publishedAt) || publishedAt <= now())]
   | order(publishedAt desc)[$start...$end]{
     _id,
     title,
