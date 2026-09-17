@@ -4,7 +4,7 @@
   import { useHead } from '@vueuse/head'
   import { client } from '@/sanity'
   import legalPageQuery from '@/queries/legalPages'
-  import { PortableText } from '@portabletext/vue'
+  import RichText from '@/components/RichText.vue'
   import { truncateForDescription } from '@/composables/useStructuredData'
 
   const route   = useRoute()
@@ -79,15 +79,11 @@
     <div v-else-if="error" class="text-[var(--color-alert-dark)]">{{ error }}</div>
     <div class="my-12" v-else>
       <h1 
-        class="text-3xl font-bold mb-12 p-3 border-4 border-[var(--color-accent)]"
+        class="text-2xl sm:text-3xl md:text-4xl font-bold mb-12 p-3 border-4 border-[var(--color-accent)]"
       >
         {{ page.title }}
       </h1>
-      <div class="text-left leading-relaxed">
-        <PortableText 
-          :value="page.body"
-        ></PortableText>
-      </div>  
+      <RichText :value="page.body" />
     </div>
   </section>
 </template>

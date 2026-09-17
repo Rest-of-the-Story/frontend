@@ -1,7 +1,7 @@
 <!-- src/components/ContactInformationSection.vue -->
 <script setup>
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-  import { PortableText } from '@portabletext/vue';
+  import RichText from '@/components/RichText.vue'
 
   const { block } = defineProps({
     block: {
@@ -68,11 +68,7 @@
               <span class="text-lg sm:text-xl md:text-2xl text-[var(--color-text-muted)]" aria-hidden="true">
                 <FontAwesomeIcon :icon="['fas', contact.addressIcon]" />
               </span>
-              <div class="text-left">
-                <PortableText 
-                  :value="contact.address"
-                ></PortableText>
-              </div>
+              <RichText :value="contact.address" compact />
             </div>
 
             <div class="flex items-start gap-3">

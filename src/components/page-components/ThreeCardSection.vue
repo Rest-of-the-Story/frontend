@@ -1,5 +1,5 @@
 <script setup>
-import { PortableText } from '@portabletext/vue'
+import RichText from '@/components/RichText.vue'
 import { RouterLink } from 'vue-router'
 import { urlFor } from '@/sanity'
 
@@ -77,12 +77,11 @@ const { block } = defineProps({
             {{ card.heading }}
           </h2>
 
-          <div 
-            :class="'prose prose-sm mb-4', 
-            card.iconImage ? 'text-[var(--color-black)]' : 'text-[var(--color-white)]'"
-          >
-            <PortableText :value="card.body" />
-          </div>
+          <RichText
+            :value="card.body"
+            :invert="!card.iconImage"
+            class="mb-4"
+          />
 
           <component
             v-if="card.button?.text && card.button?.url"

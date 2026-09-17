@@ -1,5 +1,5 @@
 <script setup>
-import { PortableText } from '@portabletext/vue'
+import RichText from '@/components/RichText.vue'
 
 // pull in the block prop
 const { block } = defineProps({
@@ -34,11 +34,6 @@ const headingId = block.heading
     </h2>
 
     <!-- body -->
-    <div
-      data-testid="portable-text"
-      class="prose prose-lg"
-    >
-      <PortableText :value="block.body" />
-    </div>
+    <RichText data-testid="portable-text" :value="block.body" />
   </section>
 </template>

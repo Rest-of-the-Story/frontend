@@ -1,7 +1,7 @@
 <!-- Accessible, responsive image hero -->
 <script setup>
 import { urlFor } from '@/sanity'
-import { PortableText } from '@portabletext/vue'
+import RichText from '@/components/RichText.vue'
 import { computed } from 'vue'
 
 const { block } = defineProps({
@@ -52,12 +52,7 @@ const headingId = `hero-${block?._key || 'section'}-heading`
         {{ block.heading }}
       </h2>
 
-      <div
-        v-if="block.body"
-        class="prose prose-invert prose-base md:prose-lg max-w-none mx-auto mb-4 text-left"
-      >
-        <PortableText :value="block.body" />
-      </div>
+      <RichText :value="block.body" invert class="mb-4 md:text-lg" />
 
       <div v-if="block.button?.text && block.button?.url">
         <a
@@ -72,14 +67,6 @@ const headingId = `hero-${block?._key || 'section'}-heading`
 </template>
 
 <style scoped>
-/* A bit more breathing room between body paragraphs */
-.image-section :deep(.prose p) {
-  margin-bottom: 1.25rem;
-}
-.image-section :deep(.prose p:last-child) {
-  margin-bottom: 0;
-}
-
 /* Disable parallax on small screens for performance & motion comfort */
 @media (max-width: 767.98px) {
   .image-section {

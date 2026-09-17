@@ -12,6 +12,8 @@
 @import './contact.pcss';
 /* footer styles */
 @import './footer.pcss';
+/* CMS rich text — last so it wins ties with section rules */
+@import './rich-text.pcss';
 
 /* Brand "primary" color scale (navy). Must come AFTER all @import rules — CSS
    requires @import to precede other at-rules, so a @theme block placed above

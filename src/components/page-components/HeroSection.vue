@@ -1,6 +1,6 @@
 <script setup>
   import { computed } from 'vue'
-  import { PortableText } from '@portabletext/vue'
+  import RichText from '@/components/RichText.vue'
   import { RouterLink } from 'vue-router'
   import { urlFor } from '@/sanity'
 
@@ -122,9 +122,7 @@
         </h1>
 
         <!-- body copy -->
-        <div class="subtitle max-w-2xl mb-6 text-white">
-          <PortableText :value="block.body" />
-        </div>
+        <RichText :value="block.body" invert center class="subtitle max-w-3xl mb-6" />
 
         <!-- call-to-action -->
          <component

@@ -1,7 +1,7 @@
 <!-- src/components/FormSection.vue -->
 <script setup>
 import { reactive } from 'vue'
-import { PortableText } from '@portabletext/vue'
+import RichText from '@/components/RichText.vue'
 
 const props = defineProps({
   block: Object
@@ -62,9 +62,7 @@ function errorsClear() {
       <h2 id="form-section-title" class="text-3xl font-bold">
         {{ block.formTitle }}
       </h2>
-      <div v-if="block.formDescription" class="prose mx-auto mt-2">
-        <PortableText :value="block.formDescription" />
-      </div>
+      <RichText :value="block.formDescription" invert class="mt-2 mb-8" />
     </div>
 
     <form

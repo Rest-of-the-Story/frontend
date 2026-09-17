@@ -80,9 +80,7 @@
       </header>
 
       <!-- Body -->
-      <section class="blog-post-content prose prose-lg max-w-none text-[var(--color-text)] text-left">
-        <PortableText :value="post.body" />
-      </section>
+      <RichText :value="post.body" class="blog-post-content md:text-lg text-[var(--color-text)]" />
 
       <hr class="my-10 border-dashed border-[var(--color-border)]" />
 
@@ -97,7 +95,7 @@
 import { ref, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
-import { PortableText } from '@portabletext/vue'
+import RichText from '@/components/RichText.vue'
 import { client, urlFor } from '@/sanity'
 import { blogPostQuery } from '@/queries/blogPost.js'
 import FinalNote from '@/components/Blogs/FinalNote.vue'
@@ -217,72 +215,5 @@ function img(source, w, h) {
   :root[data-theme="dark"] .blog-tag {
     background: var(--color-accent-dark);
     color: #fff;
-  }
-
-  /* Paragraph spacing and alignment */
-  .prose :where(p):not(:where([class~="not-prose"] *)) {
-    margin-block: 1em;
-  }
-
-  .blog-post-content :deep(p) {
-    text-align: left !important;
-  }
-
-  /* Heading styles */
-  .blog-post-content :deep(h2) {
-    font-size: 1.5rem; /* 24px mobile */
-    font-weight: 700;
-    margin-top: 2em;
-    margin-bottom: 1em;
-    line-height: 1.3;
-    color: var(--color-text-heading);
-    border-bottom: 3px solid var(--color-accent);
-    padding-bottom: 0.5rem;
-    text-align: left;
-  }
-
-  @media (min-width: 768px) {
-    .blog-post-content :deep(h2) {
-      font-size: 1.875rem; /* 30px tablet+ */
-    }
-  }
-
-  .blog-post-content :deep(h3) {
-    font-size: 1.25rem; /* 20px mobile */
-    font-weight: 600;
-    margin-top: 1.75em;
-    margin-bottom: 0.75em;
-    line-height: 1.4;
-    color: var(--color-text-heading);
-    text-align: left;
-  }
-
-  @media (min-width: 768px) {
-    .blog-post-content :deep(h3) {
-      font-size: 1.5rem; /* 24px tablet+ */
-    }
-  }
-
-  .blog-post-content :deep(h4) {
-    font-size: 1.125rem; /* 18px mobile */
-    font-weight: 600;
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-    line-height: 1.5;
-    color: var(--color-text-heading);
-    text-align: left;
-  }
-
-  @media (min-width: 768px) {
-    .blog-post-content :deep(h4) {
-      font-size: 1.25rem; /* 20px tablet+ */
-    }
-  }
-
-  /* Lists */
-  .blog-post-content :deep(ul),
-  .blog-post-content :deep(ol) {
-    text-align: left;
-    list-style-position: inside;
   }
 </style>

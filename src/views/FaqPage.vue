@@ -1,16 +1,17 @@
 <template>
   <section class="px-4 pt-12 pb-36">
     <!-- Hero Section -->
-    <div class="relative max-w-4xl mx-auto h-32 md:h-48 w-full">
+    <!-- Grows with the title (a fixed height let long titles spill out of the box) -->
+    <div class="relative max-w-4xl mx-auto mb-8 min-h-32 md:min-h-48 w-full overflow-hidden flex">
       <img
         v-if="heroImage"
-        :src="urlFor(heroImage)"
+        :src="urlFor(heroImage, { width: 1024 })"
         alt=""
-        class="w-full h-full object-cover"
+        class="absolute inset-0 w-full h-full object-cover"
       />
-      <div class="hero-text-bg absolute inset-0 flex items-center justify-center px-4">
+      <div class="hero-text-bg relative flex flex-1 items-center justify-center px-4 py-6">
         <h1
-          class="text-white text-3xl md:text-5xl font-bold text-center opacity-100 leading-snug"
+          class="text-white text-2xl sm:text-3xl md:text-5xl font-bold text-center leading-snug"
         >
           {{ title }}
         </h1>
@@ -51,9 +52,9 @@
           v-if="openIndex === idx"
           :id="`faq-panel-${idx}`"
           role="region"
-          class="mt-3 px-8 prose prose-lg text-[var(--color-text-muted)] text-left"
+          class="mt-3 px-4 sm:px-8 text-[var(--color-text-muted)]"
         >
-          <PortableText :value="faq.answer" />
+          <RichText :value="faq.answer" />
         </div>
       </transition>
     </div>
@@ -64,7 +65,7 @@
   import { ref, onMounted, watch } from 'vue'
   import { useHead } from '@vueuse/head'
   import { client, urlFor } from '@/sanity'
-  import { PortableText } from '@portabletext/vue'
+  import RichText from '@/components/RichText.vue'
   import faqPageQuery from '@/queries/faqPage'
   import { useFaqSchema } from '@/composables/useStructuredData'
 

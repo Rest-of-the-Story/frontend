@@ -1,6 +1,6 @@
 <script setup>
   import { computed, ref, onMounted } from 'vue'
-  import { PortableText } from '@portabletext/vue'
+  import RichText from '@/components/RichText.vue'
   import { urlFor } from '@/sanity'
 
   const { block } = defineProps({
@@ -122,15 +122,14 @@
         </div>
       </div>
 
-      <!-- Text -->
-      <div class="w-full md:w-1/2 min-w-0">
+      <!-- Text. Without an image there is no second column, so the copy gets the
+           full width with a readable measure instead of staying in a half column. -->
+      <div class="w-full min-w-0" :class="optimizedImageUrl ? 'md:w-1/2' : 'max-w-3xl mx-auto'">
         <h2 v-if="block.heading" :id="`section-heading-${block._key}`">
           {{ block.heading }}
         </h2>
 
-        <div v-if="block.body" class="prose max-w-none">
-          <PortableText :value="block.body" />
-        </div>
+        <RichText :value="block.body" />
       </div>
     </div>
   </section>

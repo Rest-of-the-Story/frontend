@@ -60,9 +60,12 @@
                     aria-hidden="true"
                     class="text-lg mt-0.5 flex-shrink-0"
                   />
-                  <span class="text-sm sm:text-base text-left whitespace-pre-line leading-snug">
-                    <PortableText :value="footer.main.contactInfo.address" />
-                  </span>
+                  <RichText
+                    :value="footer.main.contactInfo.address"
+                    invert
+                    compact
+                    class="text-sm sm:text-base whitespace-pre-line leading-snug"
+                  />
                 </li>
                 <li v-if="footer.main.contactInfo.phone">
                   <a
@@ -202,7 +205,7 @@
   import Map from './Map.vue'
   import Copyright from '@/components/footer/copyright/Copyright.vue'
   import { urlFor } from '@/sanity'
-  import { PortableText } from '@portabletext/vue'
+  import RichText from '@/components/RichText.vue'
 
   // Ensure Pinia is active even in tests
   if (!getActivePinia()) {
